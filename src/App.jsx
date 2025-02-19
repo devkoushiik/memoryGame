@@ -16,17 +16,16 @@ export default function App() {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-
-      const dataSlice = getDataSlice(data);
-
-      setEmojidata(dataSlice);
+      const dataSlice = await getDataSlice(data);
+      const emojisArray = await getEmojisArray(dataSlice);
+      setEmojidata(emojisArray);
       setIsGameOn(true);
     } catch (error) {
       console.error("Error:", error);
     }
   }
 
-  function getDataSlice(data) {
+  async function getDataSlice(data) {
     let randomIndices = getRandomIndices(data);
     let dataSample = randomIndices.map((index) => data[index]);
     return dataSample;
@@ -45,8 +44,21 @@ export default function App() {
     return indices;
   }
 
-  function turnCard() {
-    console.log("Memory card clicked");
+  // Fisher-Yates shuffle algorithm
+  async function getEmojisArray(data) {
+    const duplicatedData = [...data, ...data];
+    for (let i = duplicatedData.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [duplicatedData[i], duplicatedData[j]] = [
+        duplicatedData[j],
+        duplicatedData[i],
+      ];
+    }
+    return duplicatedData;
+  }
+
+  function turnCard(emojiName, index) {
+    console.log("Memory card clicked", emojiName, index);
   }
 
   return (
