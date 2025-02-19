@@ -16,12 +16,33 @@ export default function App() {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      const dataSample = data.slice(0, 5);
-      setEmojidata(dataSample);
+
+      const dataSlice = getDataSlice(data);
+
+      setEmojidata(dataSlice);
       setIsGameOn(true);
     } catch (error) {
       console.error("Error:", error);
     }
+  }
+
+  function getDataSlice(data) {
+    let randomIndices = getRandomIndices(data);
+    let dataSample = randomIndices.map((index) => data[index]);
+    return dataSample;
+  }
+
+  function getRandomIndices(data) {
+    const indices = [];
+    for (let i = 0; i < 5; i++) {
+      const randomIndex = Math.floor(Math.random() * data.length);
+      if (!indices.includes(randomIndex)) {
+        indices.push(randomIndex);
+      } else {
+        i--;
+      }
+    }
+    return indices;
   }
 
   function turnCard() {
