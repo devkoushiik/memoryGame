@@ -3,6 +3,7 @@ import Form from "./components/Form";
 import MemoryCard from "./components/MemoryCard";
 export default function App() {
   const [isGameOn, setIsGameOn] = useState(false);
+  const [emojidata, setEmojidata] = useState([]);
 
   async function startGame(e) {
     e.preventDefault();
@@ -15,7 +16,8 @@ export default function App() {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      console.log(data);
+      const dataSample = data.slice(0, 5);
+      setEmojidata(dataSample);
       setIsGameOn(true);
     } catch (error) {
       console.error("Error:", error);
@@ -30,7 +32,7 @@ export default function App() {
     <main>
       <h1>Memory</h1>
       {!isGameOn && <Form handleSubmit={startGame} />}
-      {isGameOn && <MemoryCard handleClick={turnCard} />}
+      {isGameOn && <MemoryCard data={emojidata} handleClick={turnCard} />}
     </main>
   );
 }
