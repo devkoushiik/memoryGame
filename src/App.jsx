@@ -6,8 +6,8 @@ export default function App() {
   const [emojidata, setEmojidata] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
-
-  console.log(matchedCards);
+  const [isGameOver, setIsGameOver] = useState(false);
+  console.log(isGameOver);
 
   useEffect(() => {
     if (
@@ -20,6 +20,12 @@ export default function App() {
       ]);
     }
   }, [selectedCards]);
+
+  useEffect(() => {
+    if (emojidata.length && matchedCards.length === emojidata.length) {
+      setIsGameOver(true);
+    }
+  }, [matchedCards]);
 
   async function startGame(e) {
     e.preventDefault();
