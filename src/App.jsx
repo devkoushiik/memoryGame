@@ -1,9 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "./components/Form";
 import MemoryCard from "./components/MemoryCard";
 export default function App() {
   const [isGameOn, setIsGameOn] = useState(false);
   const [emojidata, setEmojidata] = useState([]);
+  const [selectedCards, setSelectedCards] = useState([]);
+  const [matchedCards, setMatchedCards] = useState([]);
+
+  console.log(matchedCards);
+
+  useEffect(() => {
+    if (
+      selectedCards.length === 2 &&
+      selectedCards[0].name === selectedCards[1].name
+    ) {
+      setMatchedCards((prevMatchedCards) => [
+        ...prevMatchedCards,
+        ...selectedCards,
+      ]);
+    }
+  }, [selectedCards]);
 
   async function startGame(e) {
     e.preventDefault();
@@ -58,7 +74,14 @@ export default function App() {
   }
 
   function turnCard(emojiName, index) {
-    console.log("Memory card clicked", emojiName, index);
+    const selectedCardEntry = selectedCards.find(
+      (emoji) => emoji.index === index
+    );
+    if (!selectedCardEntry && selectedCards.length < 2) {
+      setSelectedCards([...selectedCards, { name: emojiName, index }]);
+    } else if (!selectedCardEntry && selectedCards.length === 2) {
+      setSelectedCards([{ name: emojiName, index }]);
+    }
   }
 
   return (

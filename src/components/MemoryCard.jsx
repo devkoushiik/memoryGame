@@ -1,6 +1,5 @@
 import { decodeEntity } from "html-entities";
 export default function MemoryCard({ handleClick, data }) {
-  console.log(data);
   // const emojiArray = [
   //   "🐶",
   //   "🐷",
