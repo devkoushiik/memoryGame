@@ -26,10 +26,16 @@ export default function MemoryCard({
     const matchedCardEntry = selectedCards.find(
       (emoji) => emoji.index === index
     );
+
+    const cardStyle = matchedCardEntry
+      ? "card-item--matched"
+      : selectedCardEntry
+      ? "card-item--selected"
+      : "";
+
     return (
-      <li key={index} className="card-item">
+      <li key={index} className={` card-item ${cardStyle}`}>
         <EmojiButton
-          style="btn btn--emoji"
           handleClick={() => handleClick(emoji.name, index)}
           content={decodeEntity(emoji.htmlCode[0])}
           selectedCardEntry={selectedCardEntry}
