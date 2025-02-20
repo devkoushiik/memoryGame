@@ -94,7 +94,14 @@ export default function App() {
     <main>
       <h1>Memory</h1>
       {!isGameOn && <Form handleSubmit={startGame} />}
-      {isGameOn && <MemoryCard data={emojidata} handleClick={turnCard} />}
+      {isGameOn && (
+        <MemoryCard
+          data={emojidata}
+          handleClick={turnCard}
+          selectedCards={selectedCards}
+          matchedCards={matchedCards}
+        />
+      )}
     </main>
   );
 }
