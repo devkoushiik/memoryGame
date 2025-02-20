@@ -39,6 +39,7 @@ export default function MemoryCard({
           emoji={emoji}
           selectedCardEntry={selectedCardEntry}
           matchedCardEntry={matchedCardEntry}
+          index={index}
         />
       </li>
     );
