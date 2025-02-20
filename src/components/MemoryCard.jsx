@@ -23,7 +23,7 @@ export default function MemoryCard({
     const selectedCardEntry = selectedCards.find(
       (emoji) => emoji.index === index
     );
-    const matchedCardEntry = selectedCards.find(
+    const matchedCardEntry = matchedCards.find(
       (emoji) => emoji.index === index
     );
 

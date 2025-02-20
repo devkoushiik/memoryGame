@@ -13,7 +13,11 @@ const EmojiButton = ({
     : "btn--emoji__front";
 
   return (
-    <button className={`btn btn--emoji ${btnStyle}`} onClick={handleClick}>
+    <button
+      disabled={matchedCardEntry}
+      className={`btn btn--emoji ${btnStyle}`}
+      onClick={selectedCardEntry ? null : handleClick}
+    >
       {btnContent}
     </button>
   );

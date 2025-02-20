@@ -80,6 +80,7 @@ export default function App() {
   }
 
   function turnCard(emojiName, index) {
+    console.log("clicked");
     const selectedCardEntry = selectedCards.find(
       (emoji) => emoji.index === index
     );
