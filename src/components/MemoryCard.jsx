@@ -1,4 +1,3 @@
-import { decodeEntity } from "html-entities";
 import EmojiButton from "./EmojiButton";
 export default function MemoryCard({
   handleClick,
@@ -37,7 +36,7 @@ export default function MemoryCard({
       <li key={index} className={` card-item ${cardStyle}`}>
         <EmojiButton
           handleClick={() => handleClick(emoji.name, index)}
-          content={decodeEntity(emoji.htmlCode[0])}
+          emoji={emoji}
           selectedCardEntry={selectedCardEntry}
           matchedCardEntry={matchedCardEntry}
         />

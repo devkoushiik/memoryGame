@@ -1,10 +1,15 @@
+import { decodeEntity } from "html-entities";
 const EmojiButton = ({
   handleClick,
   content,
   selectedCardEntry,
   matchedCardEntry,
+  emoji,
 }) => {
-  const btnContent = selectedCardEntry || matchedCardEntry ? content : "?";
+  const btnContent =
+    selectedCardEntry || matchedCardEntry
+      ? decodeEntity(emoji.htmlCode[0])
+      : "?";
 
   const btnStyle = matchedCardEntry
     ? "btn--emoji__back--matched"
