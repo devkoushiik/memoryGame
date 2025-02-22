@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Form from "./components/Form";
 import MemoryCard from "./components/MemoryCard";
 import AssistiveTechInfo from "./components/AssistiveTechInfo";
+import GameOver from "./components/GameOver";
 export default function App() {
   const [isGameOn, setIsGameOn] = useState(false);
   const [emojisData, setEmojisData] = useState([]);
@@ -101,6 +102,7 @@ export default function App() {
           matchedCards={matchedCards}
         />
       )}
+      {areAllCardsMatched && <GameOver />}
       {isGameOn && (
         <MemoryCard
           data={emojisData}
