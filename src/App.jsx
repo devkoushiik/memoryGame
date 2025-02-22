@@ -92,6 +92,15 @@ export default function App() {
     }
   }
 
+  // reset game
+  function resetGame() {
+    setIsGameOn(false);
+    setEmojisData([]);
+    setSelectedCards([]);
+    setMatchedCards([]);
+    setAreAllCardsMatched(false);
+  }
+
   return (
     <main>
       <h1>Memory</h1>
@@ -102,7 +111,7 @@ export default function App() {
           matchedCards={matchedCards}
         />
       )}
-      {areAllCardsMatched && <GameOver />}
+      {areAllCardsMatched && <GameOver resetGameHandler={resetGame} />}
       {isGameOn && (
         <MemoryCard
           data={emojisData}
