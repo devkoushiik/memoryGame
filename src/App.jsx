@@ -103,7 +103,7 @@ export default function App() {
 
   return (
     <main>
-      <h1>Memory</h1>
+      <h1>Memory Game</h1>
       {!isGameOn && <Form handleSubmit={startGame} />}
       {isGameOn && !areAllCardsMatched && (
         <AssistiveTechInfo
