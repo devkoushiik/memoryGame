@@ -5,6 +5,11 @@ import AssistiveTechInfo from "./components/AssistiveTechInfo";
 import GameOver from "./components/GameOver";
 import ErrorCard from "./components/ErrorCard";
 export default function App() {
+  const initialFormData = {
+    category: "animals-and-nature",
+    number: "10",
+  };
+  const [formData, setFormData] = useState(initialFormData);
   const [isGameOn, setIsGameOn] = useState(false);
   const [emojisData, setEmojisData] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
@@ -36,7 +41,7 @@ export default function App() {
 
     try {
       const response = await fetch(
-        "https://emojihub.yurace.pro/api/all/category/animals-and-nature"
+        `https://emojihub.yurace.pro/api/all/category/${formData.category}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -53,14 +58,14 @@ export default function App() {
   }
 
   async function getDataSlice(data) {
-    let randomIndices = getRandomIndices(data);
+    let randomIndices = getRandomIndices(data, formData.number);
     let dataSample = randomIndices.map((index) => data[index]);
     return dataSample;
   }
 
-  function getRandomIndices(data) {
+  function getRandomIndices(data, numberOfEmojis) {
     const indices = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < numberOfEmojis / 2; i++) {
       const randomIndex = Math.floor(Math.random() * data.length);
       if (!indices.includes(randomIndex)) {
         indices.push(randomIndex);
