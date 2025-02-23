@@ -16,7 +16,6 @@ export default function App() {
   const [matchedCards, setMatchedCards] = useState([]);
   const [areAllCardsMatched, setAreAllCardsMatched] = useState(false);
   const [isError, setIsError] = useState(false);
-  console.log(isError);
 
   useEffect(() => {
     if (
@@ -35,7 +34,15 @@ export default function App() {
       setAreAllCardsMatched(true);
     }
   }, [matchedCards]);
+  // pick for change value
+  function handleChange(e) {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [e.target.name]: e.target.value,
+    }));
+  }
 
+  // start game
   async function startGame(e) {
     e.preventDefault();
 
@@ -90,7 +97,6 @@ export default function App() {
   }
 
   function turnCard(emojiName, index) {
-    console.log("clicked");
     const selectedCardEntry = selectedCards.find(
       (emoji) => emoji.index === index
     );
@@ -119,7 +125,9 @@ export default function App() {
     <main>
       <h1>Memory Game</h1>
 
-      {!isGameOn && !isError && <Form handleSubmit={startGame} />}
+      {!isGameOn && !isError && (
+        <Form handleSubmit={startGame} handleChange={handleChange} />
+      )}
 
       {isGameOn && !areAllCardsMatched && (
         <AssistiveTechInfo
