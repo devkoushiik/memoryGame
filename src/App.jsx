@@ -43,7 +43,6 @@ export default function App() {
       [e.target.name]: e.target.value,
     }));
   }
-  console.log(formData);
 
   // start game
   async function startGame(e) {

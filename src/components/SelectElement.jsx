@@ -1,7 +1,6 @@
 import { data } from "../data/data";
 
 const SelectElement = ({ handleChange, target }) => {
-  console.log(target);
   return (
     <div className="form__inner-wrapper">
       {target === "category" ? (
