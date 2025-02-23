@@ -4,6 +4,7 @@ import MemoryCard from "./components/MemoryCard";
 import AssistiveTechInfo from "./components/AssistiveTechInfo";
 import GameOver from "./components/GameOver";
 import ErrorCard from "./components/ErrorCard";
+
 export default function App() {
   const initialFormData = {
     category: "animals-and-nature",
@@ -34,6 +35,7 @@ export default function App() {
       setAreAllCardsMatched(true);
     }
   }, [matchedCards]);
+
   // pick for change value
   function handleChange(e) {
     setFormData((prevFormData) => ({
@@ -41,6 +43,7 @@ export default function App() {
       [e.target.name]: e.target.value,
     }));
   }
+  console.log(formData);
 
   // start game
   async function startGame(e) {
